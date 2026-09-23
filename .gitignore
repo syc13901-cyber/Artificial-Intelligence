@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node（tools/ 下报告生成脚本的依赖）
+node_modules/
+
+# 数据集（体积大，脚本会自动下载）
+data/
+*.tar.gz
+
+# 课程报告与个人交付物（不入库）
+*.docx
+*.zip
+report_preview.pdf
+page-*.png
+
+# 密钥与敏感信息
+.env
