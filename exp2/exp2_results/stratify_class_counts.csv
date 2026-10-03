@@ -1,0 +1,4 @@
+class,with_stratify_train_count,without_stratify_train_count
+setosa,35,31
+versicolor,35,37
+virginica,35,37
