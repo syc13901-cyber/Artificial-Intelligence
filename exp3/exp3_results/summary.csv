@@ -1,0 +1,10 @@
+run,model,batch_size,lr,augment,params,epochs,train_images,final_avg_loss,train_minutes,test_accuracy_pct
+baseline,Net,64,0.001,False,62006,2,50000,2.092,0.5,31.24
+bs32,Net,32,0.001,False,62006,2,50000,1.750,0.6,41.52
+bs128,Net,128,0.001,False,62006,2,50000,2.290,0.4,17.23
+lr0.01,Net,64,0.01,False,62006,2,50000,1.386,0.5,53.05
+lr0.0001,Net,64,0.0001,False,62006,2,50000,2.303,0.4,11.34
+augment,Net,64,0.001,True,62006,2,50000,2.152,0.5,29.32
+deep,NetDeep,64,0.001,False,156074,2,50000,1.987,0.5,34.42
+final,Net,64,0.01,True,62006,10,50000,1.138,2.2,62.15
+final_noaug,Net,64,0.01,False,62006,10,50000,0.811,1.7,63.52
