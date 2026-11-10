@@ -1,0 +1,46 @@
+
+===== 环境信息（密钥不打印） =====
+Python: 3.13.14
+openai SDK: 3.49.0
+BASE_URL: https://api.deepseek.com
+请求模型: deepseek-flash
+DEEPSEEK_API_KEY：已从环境变量读取（内容保密，不显示）
+
+===== A 组：开放式提示词 =====
+
+A | deepseek-flash | stop
+- 事项：提交机器学习实验报告
+- 截止时间：周五18:00前
+- 提交方式/地点：课程平台
+Token 用量：输入 26（缓存命中 0），输出 29，合计 55
+能直接解析为 JSON 对象：False
+本次估算费用：0.000284 元（高峰价：输入 2.0 元/百万、输出 8.0 元/百万）
+
+===== B 组：JSON 结构化提示词 =====
+
+B | deepseek-flash | stop
+{"course":"机器学习实验","deadline":"周五18:00前","deliverable":"实验报告","channel":"课程平台","contact":null}
+Token 用量：输入 58（缓存命中 0），输出 31，合计 89
+能直接解析为 JSON 对象： True
+本次估算费用：0.000364 元（高峰价：输入 2.0 元/百万、输出 8.0 元/百万）
+
+===== 进阶任务：删除截止时间后仅用 B 提示词再调用一次 =====
+新通知： 机器学习实验请提交实验报告到课程平台。
+
+ADV(B) | deepseek-flash | stop
+{"course":"机器学习实验","deadline":null,"deliverable":"实验报告","channel":"课程平台","contact":null}
+Token 用量：输入 54（缓存命中 0），输出 27，合计 81
+能直接解析为 JSON 对象： True
+本次估算费用：0.000324 元（高峰价：输入 2.0 元/百万、输出 8.0 元/百万）
+
+===== 字段核验与费用汇总 =====
+原文逐项核对（对照讲义步骤 3）：course=机器学习实验, deadline=周五18:00前,
+deliverable=实验报告, channel=课程平台, contact=原文未提供（应为 null）
+
+B 组实际 JSON： {"course": "机器学习实验", "deadline": "周五18:00前", "deliverable": "实验报告", "channel": "课程平台", "contact": null}
+进阶任务实际 JSON： {"course": "机器学习实验", "deadline": null, "deliverable": "实验报告", "channel": "课程平台", "contact": null}
+进阶任务检查 deadline 与 contact 是否都为 null： 是，均正确为 null
+
+基础任务 A+B 两次调用估算费用：0.000648 元
+三次调用合计：输入 138 token，输出 87 token，估算总费用约 0.0010 元
+（讲义示例：600 输入 + 400 输出 ≈ 0.0044 元，高峰价；实际以平台账单为准）
